@@ -1,1 +1,0 @@
-export const module1 = "Script module linkage example.";
