@@ -11,28 +11,32 @@ let currentTemperature = document.querySelector("#currentTemperature");
 // API Url creation variables
 let baseUrlStart =
   "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
-let dynamicPartUrl = "Dubai";
+let dynamicPartUrl;
 let baseUrlEnd =
   "?unitGroup=us&include=days%2Ccurrent&key=SPQCWP3UPXJYLXTRTVL652LC5&contentType=json";
-let fullUrl = baseUrlStart + dynamicPartUrl + baseUrlEnd;
+let fullUrl;
+
+
 
 // Functions
-const handler = () => {
+function createUrl() {
   dynamicPartUrl = inputField.value;
+  console.log(dynamicPartUrl);
   selectedCity.textContent = inputField.value;
+  fullUrl = baseUrlStart + dynamicPartUrl + baseUrlEnd;
   console.log(fullUrl);
 };
 
 // Event Listeners for creating the API url request
 inputField.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    handler();
+    createUrl();
     getData();
   }
 });
 
 searchBtn.addEventListener("click", function(){
-  handler();
+  createUrl();
   getData();
 });
 
@@ -45,6 +49,12 @@ async function getData() {
       console.log(response);
       currentDay.textContent = response.days[0].datetime;
       currentTemperature.textContent = Math.round(genFunc.convertTempFromFahrenheitToCelsius(response.days[0].temp)*10)/ 10;
+      let weatherDataObject = {
+        date: response.days[0].datetime,
+        temperatureCelsius: Math.round(genFunc.convertTempFromFahrenheitToCelsius(response.days[0].temp)*10)/ 10,
+      };
+      console.log(weatherDataObject);
+      return weatherDataObject;
       // currentTemperature.textContent = response
     });
 }
