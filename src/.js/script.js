@@ -1,9 +1,12 @@
 import "../styles.css";
+import * as genFunc from "./generalFunctions.js"
 
 let inputField = document.querySelector("#citySelect");
 let searchBtn = document.querySelector("#weatherSearchBtn");
 let selectedCity = document.querySelector("#selectedCity");
-let currentTemperature = document.querySelector("currentTemperature");
+let currentDay = document.querySelector("#currentDay");
+let currentTemperature = document.querySelector("#currentTemperature");
+
 
 // API Url creation variables
 let baseUrlStart =
@@ -28,7 +31,10 @@ inputField.addEventListener("keydown", function (event) {
   }
 });
 
-searchBtn.addEventListener("click", handler);
+searchBtn.addEventListener("click", function(){
+  handler();
+  getData();
+});
 
 async function getData() {
   fetch(fullUrl)
@@ -37,6 +43,9 @@ async function getData() {
     })
     .then(function (response) {
       console.log(response);
+      currentDay.textContent = response.days[0].datetime;
+      currentTemperature.textContent = response.days[0].temp;
+      console.log(genFunc.convertTempFromFahrenheitToCelsius(response.days[0].temp));
       // currentTemperature.textContent = response
     });
 }
