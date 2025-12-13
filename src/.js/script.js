@@ -44,8 +44,7 @@ async function getData() {
     .then(function (response) {
       console.log(response);
       currentDay.textContent = response.days[0].datetime;
-      currentTemperature.textContent = response.days[0].temp;
-      console.log(genFunc.convertTempFromFahrenheitToCelsius(response.days[0].temp));
+      currentTemperature.textContent = Math.round(genFunc.convertTempFromFahrenheitToCelsius(response.days[0].temp)*10)/ 10;
       // currentTemperature.textContent = response
     });
 }
