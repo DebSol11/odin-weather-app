@@ -8,6 +8,7 @@ let currentDay = document.querySelector("#currentDay");
 let currentTemperature = document.querySelector("#currentTemperature");
 let tomorrowTemperature = document.querySelector("#tomorrowTemperature");
 const dataDisplayContainer = document.querySelector(".dataDisplayContainer");
+const loadMessage = document.querySelector("#loadMessage");
 
 let weatherDataObject = {};
 
@@ -61,12 +62,23 @@ function displayData() {
   selectedCity.textContent = weatherDataObject.address;
   currentDay.textContent = weatherDataObject.currentDate;
   currentTemperature.textContent = weatherDataObject.temperatureCelsiusCurrent;
-  tomorrowTemperature.textContent = weatherDataObject.temperatureCelsiusTomorrow;
+  tomorrowTemperature.textContent =
+    weatherDataObject.temperatureCelsiusTomorrow;
   dataDisplayContainer.style.display = "block";
 }
 
+function toggleLoadMessage() {
+  if (loadMessage.style.display === "none" || loadMessage.style.display === "") {
+    loadMessage.style.display = "block";
+  } else {
+    loadMessage.style.display = "none";
+  }
+}
+
 async function executeFunctions() {
+  await toggleLoadMessage();
   await createUrl();
   await getData();
   await displayData();
+  await toggleLoadMessage();
 }

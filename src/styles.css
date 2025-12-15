@@ -16,20 +16,30 @@ body {
   grid-template-areas:
     "top top"
     "left right";
+  row-gap: 10px;
   margin-bottom: 10px;
 }
 
 label {
-  margin-bottom: 5px;
   grid-area: top;
 }
 
 input {
   grid-area: left;
+  height: 30px;
+  font-size: large;
 }
 
 button {
   grid-area: right;
+}
+
+#loadMessage {
+  display: none;
+}
+
+#loadMessage {
+  margin-top: 7px;
 }
 
 .dataDisplayContainer {
