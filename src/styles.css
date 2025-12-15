@@ -7,3 +7,10 @@
 label {
   display: block;
 }
+
+.flexContainer {
+  display: flex;
+  gap: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}

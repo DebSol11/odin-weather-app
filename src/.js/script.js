@@ -47,14 +47,17 @@ async function getData() {
     })
     .then(function (response) {
       console.log(response);
-      currentDay.textContent = response.days[0].datetime;
-      currentTemperature.textContent = Math.round(genFunc.convertTempFromFahrenheitToCelsius(response.days[0].temp)*10)/ 10;
       let weatherDataObject = {
-        date: response.days[0].datetime,
-        temperatureCelsius: Math.round(genFunc.convertTempFromFahrenheitToCelsius(response.days[0].temp)*10)/ 10,
+        currentDate: response.days[0].datetime,
+        temperatureCelsiusCurrent: Math.round(genFunc.convertTempFromFahrenheitToCelsius(response.currentConditions.temp)*10)/ 10,
+        tomorrowDate: response.days[1].datetime,
+        temperatureCelsiusTomorrow: Math.round(genFunc.convertTempFromFahrenheitToCelsius(response.days[1].temp)*10)/ 10,
       };
       console.log(weatherDataObject);
       return weatherDataObject;
-      // currentTemperature.textContent = response
     });
 }
+// function displayData() {
+//   currentDay.textContent = response.days[0].datetime;
+//       currentTemperature.textContent = Math.round(genFunc.convertTempFromFahrenheitToCelsius(response.days[0].temp)*10)/ 10;
+// }
