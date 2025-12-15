@@ -16,12 +16,13 @@ body {
   grid-template-areas:
     "top top"
     "left right";
-  row-gap: 10px;
+  row-gap: 15px;
   margin-bottom: 10px;
 }
 
 label {
   grid-area: top;
+  font-size: large;
 }
 
 input {
@@ -32,6 +33,7 @@ input {
 
 button {
   grid-area: right;
+  font-size: large;
 }
 
 #loadMessage {
