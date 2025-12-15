@@ -6,6 +6,8 @@ let searchBtn = document.querySelector("#weatherSearchBtn");
 let selectedCity = document.querySelector("#selectedCity");
 let currentDay = document.querySelector("#currentDay");
 let currentTemperature = document.querySelector("#currentTemperature");
+let tomorrowTemperature = document.querySelector("#tomorrowTemperature");
+const dataDisplayContainer = document.querySelector(".dataDisplayContainer");
 
 let weatherDataObject = {};
 
@@ -46,7 +48,6 @@ async function getData() {
           weatherData.currentConditions.temp
         ) * 10
       ) / 10,
-    tomorrowDate: weatherData.days[1].datetime,
     temperatureCelsiusTomorrow:
       Math.round(
         generalFunc.convertTempFromFahrenheitToCelsius(
@@ -60,6 +61,8 @@ function displayData() {
   selectedCity.textContent = weatherDataObject.address;
   currentDay.textContent = weatherDataObject.currentDate;
   currentTemperature.textContent = weatherDataObject.temperatureCelsiusCurrent;
+  tomorrowTemperature.textContent = weatherDataObject.temperatureCelsiusTomorrow;
+  dataDisplayContainer.style.display = "block";
 }
 
 async function executeFunctions() {

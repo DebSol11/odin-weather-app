@@ -4,8 +4,36 @@
   box-sizing: border-box;
 }
 
+body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-areas:
+    "top top"
+    "left right";
+  margin-bottom: 10px;
+}
+
 label {
-  display: block;
+  margin-bottom: 5px;
+  grid-area: top;
+}
+
+input {
+  grid-area: left;
+}
+
+button {
+  grid-area: right;
+}
+
+.dataDisplayContainer {
+  display: none;
 }
 
 .flexContainer {
@@ -13,4 +41,8 @@ label {
   gap: 5px;
   font-size: 20px;
   font-weight: bold;
+}
+
+#sourceAPI {
+  margin-top: 10px;
 }
