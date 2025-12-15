@@ -39,7 +39,7 @@ async function getData() {
   const weatherData = await response.json();
   weatherDataObject = {
     address: weatherData.address,
-    currentDate: weatherData.days[0].datetime,
+    currentDate: generalFunc.formatDate(weatherData.days[0].datetime),
     temperatureCelsiusCurrent:
       Math.round(
         generalFunc.convertTempFromFahrenheitToCelsius(
